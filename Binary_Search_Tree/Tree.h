@@ -57,6 +57,7 @@ NODE<Type> Insert(NODE<Type> * root,Type Value)
 		root->Parent = root;
 		root->Left=Insert(root->Left,Value)
 	}
+	//if the value is less than current data, traverse Right
 	else if (Value > root->Data)
 	{
 		root->Parent = root;
