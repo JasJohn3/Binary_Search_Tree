@@ -92,14 +92,20 @@ NODE<Type>*Find(Type Value)
 template<typename Type>
 NODE<Type>*FindMax(NODE<Type>* root)
 {
-	while (root->Right != nullptr)root = root->Right;
+	while (root->Right != nullptr)
+	{
+		root = root->Right;
+	}
+		
 	return root;
-
 }
 template<typename Type>
 NODE<Type>*FindMin(NODE<Type>* root)
 {
-	while (root->Left != nullptr)root = root->Left;
+	while (root->Left != nullptr)
+	{
+		root = root->Left;
+	}
 	return root;
 }
 template<typename Type>
