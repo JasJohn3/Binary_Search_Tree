@@ -28,6 +28,11 @@ class Tree
 public:
 	Tree();
 	NODE<Type>* Insert(NODE<Type>* Current_Node,Type Value);
+	NODE<Type>*Find(Type Value);
+	NODE<Type>*FindMax(NODE<Type>* root);
+	NODE<Type>*FindMin(NODE<Type>* root);
+	void Inorder(NODE<Type>* root);
+
 	~Tree();
 
 private:
@@ -55,40 +60,39 @@ NODE<Type> Insert(NODE<Type> * root,Type Value)
 	else if (Value < root->Data)
 	{
 		root->Parent = root;
-		root->Left=Insert(root->Left,Value)
+		root->Left = Insert(root->Left, Value);
 	}
 	//if the value is less than current data, traverse Right
 	else if (Value > root->Data)
 	{
 		root->Parent = root;
-		root->Right = Insert(root->Right, Value)
+		root->Right = Insert(root->Right, Value);
 	}
 
 }
 template<typename Type>
-NODE<Type>*Find(Type Value)
+NODE<Type>*Find(NODE<Type>* root,Type Value)
 {
-	NODE<Type>*current = root;
 	//traverse left if value is less than current nodes value
-	if (Value < current->Data)
+	if (Value < root->Data)
 	{
-		current->Left = current;
+		root->Left = root;
 	}
 	//travers right if value is greater than current nodes value
-	else if (Value > current->Data)
+	else if (Value > root->Data)
 	{
-		current->Right = current;
+		root->Right = root;
 	}
 	//if no value matches and a nullptr is found, inform the user that there is no value that matches in the list
-	else if (current->Right == nullptr || current->Left == nullptr)
+	else if (root->Right == nullptr || root->Left == nullptr)
 	{
-		std::cout << "No Matching values were found inside of the tree!"
+		std::cout << "No Matching values were found inside of the tree!" << std::endl;
 	}
 	else
 	{
 		
 	}
-	return current;
+	return root;
 }
 template<typename Type>
 NODE<Type>*FindMax(NODE<Type>* root)
@@ -117,7 +121,6 @@ void Inorder(NODE<Type>* root)
 	Inorder(root->Left);
 	std::cout << "Value stored is: " << root->Data << std::endl;
 	Inorder(root->Right);
-
 }
 template<typename Type>
 Tree<Type>::~Tree()
