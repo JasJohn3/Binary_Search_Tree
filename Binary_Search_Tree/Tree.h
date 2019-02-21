@@ -27,11 +27,11 @@ class Tree
 {
 public:
 	Tree();
-	NODE<Type>* Insert(NODE<Type>* Current_Node,Type Value);
+	NODE<Type>* Insert(struct NODE<Type> * root, Type Value);
 	NODE<Type>*Find(Type Value);
 	NODE<Type>*FindMax(NODE<Type>* root);
 	NODE<Type>*FindMin(NODE<Type>* root);
-	void Inorder(NODE<Type>* root);
+	NODE<Type>* Inorder(struct NODE<Type>* root);
 
 	~Tree();
 
@@ -46,7 +46,7 @@ Tree<Type>::Tree()
 	NODE<Type>* root = nullptr;
 }
 template<typename Type>
-NODE<Type> Insert(NODE<Type> * root,Type Value)
+NODE<Type>* Insert(struct NODE<Type> * root,Type Value)
 {
 	//Create a new Node if the value is Null
 	if (root == nullptr)
@@ -68,6 +68,7 @@ NODE<Type> Insert(NODE<Type> * root,Type Value)
 		root->Parent = root;
 		root->Right = Insert(root->Right, Value);
 	}
+	return root;
 
 }
 template<typename Type>
@@ -114,13 +115,15 @@ NODE<Type>*FindMin(NODE<Type>* root)
 	return root;
 }
 template<typename Type>
-void Inorder(NODE<Type>* root)
+NODE<Type>* Inorder(struct NODE<Type>* root)
 {
 	if (root == nullptr) return;
 	//Recursive call left and right and display the Data
 	Inorder(root->Left);
 	std::cout << "Value stored is: " << root->Data << std::endl;
 	Inorder(root->Right);
+
+	return root;
 }
 template<typename Type>
 Tree<Type>::~Tree()
